@@ -3,9 +3,13 @@
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
+  var results = [];
   if (typeof obj === 'number' || typeof obj === 'boolean') return obj.toString();
   if (obj === null) return "null";
   if (typeof obj === 'string') return '"' + obj + '"';
   if (Array.isArray(obj)) return "[" + obj.map(function(elem) { return stringifyJSON(elem);}).join(",") + "]";
-  return "{}";
+  for(var key in obj) {
+    results.push(stringifyJSON(key)+':'+stringifyJSON(obj[key]));
+  }
+  return '{' + results.join() + '}';
 };
