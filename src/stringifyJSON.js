@@ -7,4 +7,5 @@ var stringifyJSON = function(obj) {
   if (obj === null) return "null";
   if (typeof obj === 'string') return '"' + obj + '"';
   if (Array.isArray(obj)) return "[" + obj.map(function(elem) { return stringifyJSON(elem);}).join(",") + "]";
+  return "{}";
 };
