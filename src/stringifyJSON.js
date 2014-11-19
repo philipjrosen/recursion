@@ -5,4 +5,5 @@
 var stringifyJSON = function(obj) {
   if (typeof obj === 'number' || typeof obj === 'boolean') return obj.toString();
   if (obj === null) return "null";
+  if (typeof obj === 'string') return '"' + obj + '"';
 };
