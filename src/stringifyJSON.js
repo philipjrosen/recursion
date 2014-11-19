@@ -7,9 +7,11 @@ var stringifyJSON = function(obj) {
   if (typeof obj === 'number' || typeof obj === 'boolean') return obj.toString();
   if (obj === null) return "null";
   if (typeof obj === 'string') return '"' + obj + '"';
-  if (Array.isArray(obj)) return "[" + obj.map(function(elem) { return stringifyJSON(elem);}).join(",") + "]";
+  if (Array.isArray(obj)) return "[" + obj.map(function(elem) { return stringifyJSON(elem);}).join() + "]";
   for(var key in obj) {
-    results.push(stringifyJSON(key)+':'+stringifyJSON(obj[key]));
+    if ( typeof obj[key] !== 'function' && typeof obj[key] !== 'undefined' ) {
+      results.push(stringifyJSON(key)+':'+stringifyJSON(obj[key]));
+    }
   }
   return '{' + results.join() + '}';
 };
